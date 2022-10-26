@@ -50,6 +50,9 @@ const Nav = () => {
                                 <Link to="courses">Courses</Link>
                             </li>
                             <li>
+                                <Link to="faq">FAQ</Link>
+                            </li>
+                            <li>
                                 <Link to="blogs">Blogs</Link>
                             </li>
                             <li>
