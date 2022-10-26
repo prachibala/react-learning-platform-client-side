@@ -1,0 +1,9 @@
+.hero {
+    display: flex;
+    justify-content: space-around;
+    margin: 0 auto;
+    padding: 50px;
+}
+.text {
+    padding: 45px;
+}
