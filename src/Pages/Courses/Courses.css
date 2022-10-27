@@ -1,0 +1,12 @@
+/* .courses {
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+} */
+
+.courses {
+    @apply w-10/12 mx-auto grid grid-cols-[_1fr,_3fr] p-10;
+}
+
+.rightSide {
+    @apply grid grid-cols-2 gap-5 px-10;
+}

@@ -1,14 +1,36 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { FaFacebook, FaGoogle } from "react-icons/fa";
+import { useContext } from "react";
+import { AuthContext } from "../Contexts/UserContext";
 
 const LogIn = () => {
+    const { signIn, googleSignin } = useContext(AuthContext);
     const handleSubmit = (e) => {
         e.preventDefault();
         const form = e.target;
         const email = form.email.value;
         const password = form.pass.value;
         console.log(email, password);
+
+        signIn(email, password)
+            .then((result) => {
+                const user = result.user;
+                console.log(user);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    };
+
+    const googleSubmit = () => {
+        googleSignin()
+            .then((result) => {
+                const user = result.user;
+            })
+            .catch((error) => {
+                console.error(error);
+            });
     };
     return (
         <div>
@@ -60,7 +82,9 @@ const LogIn = () => {
                                 Login with social accounts
                             </p>
                             <div className="flex justify-center mt-2">
-                                <FaFacebook></FaFacebook>
+                                <button onClick={googleSubmit}>
+                                    <FaGoogle></FaGoogle>
+                                </button>
 
                                 <FaGoogle className="ml-3 "></FaGoogle>
                             </div>
