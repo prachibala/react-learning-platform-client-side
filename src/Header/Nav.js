@@ -7,7 +7,7 @@ const Nav = () => {
     return (
         <>
             <div>
-                <div className="navbar bg-neutral text-neutral-content">
+                <div className="navbar bg-neutral text-neutral-content ">
                     <div className="flex-1">
                         <Link
                             to="/"

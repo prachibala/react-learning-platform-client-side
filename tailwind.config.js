@@ -4,5 +4,6 @@ module.exports = {
     daisyui: {
         themes: ["dracula"],
     },
+
     plugins: [require("daisyui")],
 };
