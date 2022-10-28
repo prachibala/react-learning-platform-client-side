@@ -28,7 +28,7 @@ const RightSide = ({ catId }) => {
 					</figure>
 					<div className="card-body">
 						<h2 className="card-title">{course.title}</h2>
-						<p>Price:{course.price}$</p>
+						<p>Price: ${course.price}</p>
 						<div className="card-actions justify-end">
 							<Link
 								to={`/courses/${course.id}`}
