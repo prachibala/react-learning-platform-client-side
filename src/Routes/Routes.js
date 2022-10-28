@@ -9,48 +9,53 @@ import Home from "../Pages/Home";
 import LogIn from "../Pages/LogIn";
 import PrivateRoute from "../Pages/PrivateRoute";
 import Register from "../Pages/Register";
+import NotFound from "../Pages/ErrorPage/NotFound";
 
 export const router = createBrowserRouter([
-	{
-		path: "/",
-		element: <Main></Main>,
-		children: [
-			{
-				path: "/",
-				element: <Home></Home>,
-			},
-			{
-				path: "/courses",
-				element: <Courses></Courses>,
-			},
-			{
-				path: "/faq",
-				element: <Faqs />,
-			},
-			{
-				path: "/courses/:courseId",
-				element: <SingleCourse />,
-			},
-			{
-				path: "/blogs",
-				element: <Blogs></Blogs>,
-			},
-			{
-				path: "/login",
-				element: <LogIn></LogIn>,
-			},
-			{
-				path: "/register",
-				element: <Register></Register>,
-			},
-			{
-				path: "/checkout/:id",
-				element: (
-					<PrivateRoute>
-						<CheckOut></CheckOut>
-					</PrivateRoute>
-				),
-			},
-		],
-	},
+    {
+        path: "/",
+        element: <Main></Main>,
+        children: [
+            {
+                path: "/",
+                element: <Home></Home>,
+            },
+            {
+                path: "/courses",
+                element: <Courses></Courses>,
+            },
+            {
+                path: "/faq",
+                element: <Faqs />,
+            },
+            {
+                path: "/courses/:courseId",
+                element: <SingleCourse />,
+            },
+            {
+                path: "/blogs",
+                element: <Blogs></Blogs>,
+            },
+            {
+                path: "/login",
+                element: <LogIn></LogIn>,
+            },
+            {
+                path: "/register",
+                element: <Register></Register>,
+            },
+            {
+                path: "/checkout/:id",
+                element: (
+                    <PrivateRoute>
+                        <CheckOut></CheckOut>
+                    </PrivateRoute>
+                ),
+            },
+            {
+                path: "*",
+                element: <NotFound></NotFound>,
+            },
+        ],
+    },
 ]);

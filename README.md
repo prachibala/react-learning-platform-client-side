@@ -5,19 +5,19 @@
 #### Live Site Link
 
 ```
-
+https://learning-desk-51223.web.app
 ```
 
 #### Private Repo Client Side Link
 
 ```
-
+https://github.com/programming-hero-web-course1/b610-learning-platform-client-side-prachibala
 ```
 
 #### Private Repo Server Side Link
 
 ```
-
+https://github.com/programming-hero-web-course1/b610-lerning-platform-server-side-prachibala
 ```
 
 ## What We have used in this Project
