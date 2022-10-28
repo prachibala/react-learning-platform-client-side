@@ -6,6 +6,7 @@ import Courses from "../Pages/Courses/Courses";
 import SingleCourse from "../Pages/Courses/SingleCourse";
 import Home from "../Pages/Home";
 import LogIn from "../Pages/LogIn";
+import PrivateRoute from "../Pages/PrivateRoute";
 import Register from "../Pages/Register";
 
 export const router = createBrowserRouter([
@@ -39,7 +40,11 @@ export const router = createBrowserRouter([
             },
             {
                 path: "/checkout/:id",
-                element: <CheckOut></CheckOut>,
+                element: (
+                    <PrivateRoute>
+                        <CheckOut></CheckOut>
+                    </PrivateRoute>
+                ),
             },
         ],
     },
