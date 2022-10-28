@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaGithub, FaGoogle } from "react-icons/fa";
 import { useContext } from "react";
 import { AuthContext } from "../Contexts/UserContext";
@@ -12,7 +12,8 @@ const LogIn = () => {
     const githubProvider = new GithubAuthProvider();
     const navigate = useNavigate();
     const [error, setError] = useState(null);
-
+    const location = useLocation();
+    const from = location.state?.form?.pathname || "/";
     const handleSubmit = (e) => {
         e.preventDefault();
         const form = e.target;
@@ -27,6 +28,7 @@ const LogIn = () => {
                 console.log(user);
                 navigate("/courses");
                 setError(" ");
+                navigate(from, { replace: true });
             })
             .catch((error) => {
                 console.error(error);

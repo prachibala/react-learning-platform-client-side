@@ -18,6 +18,7 @@ const auth = getAuth(app);
 
 const UserContext = ({ children }) => {
     const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true);
     // CREATE-USER
     const createUser = (email, password) => {
         return createUserWithEmailAndPassword(auth, email, password);
@@ -31,6 +32,7 @@ const UserContext = ({ children }) => {
     };
     // SIGNIN
     const signIn = (email, password) => {
+        setLoading(true);
         return signInWithEmailAndPassword(auth, email, password);
     };
     // Google Signin
@@ -38,6 +40,7 @@ const UserContext = ({ children }) => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             console.log(currentUser);
             setUser(currentUser);
+            setLoading(false);
         });
         return () => {
             unsubscribe();
@@ -45,15 +48,18 @@ const UserContext = ({ children }) => {
     }, []);
 
     const googleSignin = (provider) => {
+        setLoading(true);
         return signInWithPopup(auth, provider);
     };
 
     // GitHub Login
     const githubSignin = (provider) => {
+        setLoading(true);
         return signInWithPopup(auth, provider);
     };
     // LOgOUT
     const logOut = () => {
+        setLoading(true);
         return signOut(auth);
     };
     const authInfo = {
@@ -64,6 +70,7 @@ const UserContext = ({ children }) => {
         logOut,
         updateUser,
         githubSignin,
+        loading,
     };
     return (
         <div>

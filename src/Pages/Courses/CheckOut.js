@@ -1,5 +1,7 @@
 import React from "react";
 
-const CheckOut = ({ children }) => {};
+const CheckOut = () => {
+    return <div>hihi</div>;
+};
 
 export default CheckOut;
