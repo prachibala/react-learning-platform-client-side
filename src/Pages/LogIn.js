@@ -1,13 +1,16 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { FaFacebook, FaGoogle } from "react-icons/fa";
+import { Link, useNavigate } from "react-router-dom";
+import { FaFacebook, FaGithub, FaGoogle } from "react-icons/fa";
 import { useContext } from "react";
 import { AuthContext } from "../Contexts/UserContext";
-import { GoogleAuthProvider } from "firebase/auth";
+import { GoogleAuthProvider, GithubAuthProvider } from "firebase/auth";
 
 const LogIn = () => {
-    const { signIn, googleSignin } = useContext(AuthContext);
+    const { signIn, googleSignin, githubSignin } = useContext(AuthContext);
     const googleProvider = new GoogleAuthProvider();
+    const githubProvider = new GithubAuthProvider();
+    const navigate = useNavigate();
+
     const handleSubmit = (e) => {
         e.preventDefault();
         const form = e.target;
@@ -18,7 +21,9 @@ const LogIn = () => {
         signIn(email, password)
             .then((result) => {
                 const user = result.user;
+
                 console.log(user);
+                navigate("/courses");
             })
             .catch((error) => {
                 console.error(error);
@@ -29,6 +34,18 @@ const LogIn = () => {
         googleSignin(googleProvider)
             .then((result) => {
                 const user = result.user;
+                navigate("/courses");
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    };
+
+    const githubSubmit = () => {
+        githubSignin(githubProvider)
+            .then((result) => {
+                const user = result.user;
+                navigate("/courses");
             })
             .catch((error) => {
                 console.error(error);
@@ -87,8 +104,12 @@ const LogIn = () => {
                                 <button onClick={googleSubmit}>
                                     <FaGoogle></FaGoogle>
                                 </button>
-
-                                <FaGoogle className="ml-3 "></FaGoogle>
+                                <button
+                                    onClick={githubSubmit}
+                                    className="ml-3 "
+                                >
+                                    <FaGithub></FaGithub>
+                                </button>
                             </div>
                             <label className="label text-center">
                                 <p className="label-text-alt   ">

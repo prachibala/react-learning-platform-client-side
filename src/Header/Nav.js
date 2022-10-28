@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useContext } from "react";
 import { FaUser } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Contexts/UserContext";
 
 import logo from "../Images/logo.png";
@@ -9,14 +9,16 @@ import logo from "../Images/logo.png";
 import "./Nav.css";
 const Nav = () => {
     const [navMenuState, setNavMenuState] = useState(false);
-
+    const navigate = useNavigate();
     const handleNavMenu = () => {
         setNavMenuState(!navMenuState);
     };
     const { user, logOut } = useContext(AuthContext);
     const LogOut = () => {
         logOut()
-            .then(() => {})
+            .then(() => {
+                navigate("/login");
+            })
             .catch((error) => {
                 console.error(error);
             });

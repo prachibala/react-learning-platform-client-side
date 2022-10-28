@@ -47,6 +47,11 @@ const UserContext = ({ children }) => {
     const googleSignin = (provider) => {
         return signInWithPopup(auth, provider);
     };
+
+    // GitHub Login
+    const githubSignin = (provider) => {
+        return signInWithPopup(auth, provider);
+    };
     // LOgOUT
     const logOut = () => {
         return signOut(auth);
@@ -58,6 +63,7 @@ const UserContext = ({ children }) => {
         googleSignin,
         logOut,
         updateUser,
+        githubSignin,
     };
     return (
         <div>

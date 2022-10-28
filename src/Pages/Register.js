@@ -1,12 +1,13 @@
 import React from "react";
 import { useState } from "react";
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Contexts/UserContext";
 
 const Register = () => {
     const { createUser, updateUser } = useContext(AuthContext);
     const [error, setError] = useState(null);
+    const navigate = useNavigate();
     // form Function
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -25,6 +26,7 @@ const Register = () => {
             })
             .then((res) => {
                 console.log("updated");
+                navigate("/courses");
             })
             .catch((error) => {
                 console.error(error);
