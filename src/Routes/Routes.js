@@ -8,34 +8,39 @@ import LogIn from "../Pages/LogIn";
 import Register from "../Pages/Register";
 
 export const router = createBrowserRouter([
-	{
-		path: "/",
-		element: <Main></Main>,
-		children: [
-			{
-				path: "/",
-				element: <Home></Home>,
-			},
-			{
-				path: "/courses",
-				element: <Courses></Courses>,
-			},
-			{
-				path: "/courses/:courseId",
-				element: <SingleCourse />,
-			},
-			{
-				path: "/blogs",
-				element: <Blogs></Blogs>,
-			},
-			{
-				path: "/login",
-				element: <LogIn></LogIn>,
-			},
-			{
-				path: "/register",
-				element: <Register></Register>,
-			},
-		],
-	},
+    {
+        path: "/",
+        element: <Main></Main>,
+        children: [
+            {
+                path: "/",
+                element: <Home></Home>,
+            },
+            {
+                path: "/courses",
+                element: <Courses></Courses>,
+            },
+            {
+                path: "/courses/:courseId",
+                element: <SingleCourse />,
+                loader: async ({ params }) => {
+                    return fetch(
+                        `https://openapi.programming-hero.com/api/quiz/${params.courseId}`
+                    );
+                },
+            },
+            {
+                path: "/blogs",
+                element: <Blogs></Blogs>,
+            },
+            {
+                path: "/login",
+                element: <LogIn></LogIn>,
+            },
+            {
+                path: "/register",
+                element: <Register></Register>,
+            },
+        ],
+    },
 ]);
