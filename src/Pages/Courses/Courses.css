@@ -4,9 +4,13 @@
 } */
 
 .courses {
-    @apply w-10/12 mx-auto grid grid-cols-[_1fr,_3fr] p-10;
+	@apply md:w-11/12 lg:w-10/12 mx-auto md:grid grid-cols-[_1fr,_4fr] gap-10 lg:gap-20 p-5 lg:p-10;
 }
 
 .rightSide {
-    @apply grid grid-cols-2 gap-5 px-10;
+	@apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-5 md:gap-12 px-0;
+}
+
+.leftSide {
+	@apply flex overflow-auto md:overflow-auto md:block;
 }

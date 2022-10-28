@@ -3,9 +3,11 @@ import { Link } from "react-router-dom";
 import { FaFacebook, FaGoogle } from "react-icons/fa";
 import { useContext } from "react";
 import { AuthContext } from "../Contexts/UserContext";
+import { GoogleAuthProvider } from "firebase/auth";
 
 const LogIn = () => {
     const { signIn, googleSignin } = useContext(AuthContext);
+    const googleProvider = new GoogleAuthProvider();
     const handleSubmit = (e) => {
         e.preventDefault();
         const form = e.target;
@@ -24,7 +26,7 @@ const LogIn = () => {
     };
 
     const googleSubmit = () => {
-        googleSignin()
+        googleSignin(googleProvider)
             .then((result) => {
                 const user = result.user;
             })

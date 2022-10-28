@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../Contexts/UserContext";
 
 const Register = () => {
-    const { createUser } = useContext(AuthContext);
+    const { createUser, updateUser } = useContext(AuthContext);
     const [error, setError] = useState(null);
     // form Function
     const handleSubmit = (e) => {
@@ -13,6 +13,7 @@ const Register = () => {
         const form = e.target;
         const name = form.text.value;
         const email = form.email.value;
+        const photoURL = form.photoURL.value;
         const password = form.pass.value;
         console.log(email, password, name);
 
@@ -20,6 +21,10 @@ const Register = () => {
             .then((result) => {
                 const user = result.user;
                 console.log("registered user", user);
+                return updateUser(name, photoURL);
+            })
+            .then((res) => {
+                console.log("updated");
             })
             .catch((error) => {
                 console.error(error);
@@ -42,12 +47,26 @@ const Register = () => {
                         <form onSubmit={handleSubmit} className="card-body">
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text">Name</span>
+                                    <span className="label-text">
+                                        Full Name
+                                    </span>
                                 </label>
                                 <input
                                     type="text"
                                     placeholder="name"
                                     name="text"
+                                    className="input input-bordered"
+                                    required
+                                />
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Photo</span>
+                                </label>
+                                <input
+                                    type="text"
+                                    placeholder="photoURL"
+                                    name="photoURL"
                                     className="input input-bordered"
                                     required
                                 />
@@ -93,7 +112,7 @@ const Register = () => {
                                     type="submit"
                                     className="btn btn-secondary"
                                 >
-                                    Login
+                                    Register
                                 </button>
                             </div>
                         </form>

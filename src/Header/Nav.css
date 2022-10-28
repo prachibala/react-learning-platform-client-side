@@ -1,3 +1,30 @@
 .width {
-    width: 50px;
+	width: 50px;
+}
+
+.navMobile {
+	@apply relative block md:hidden;
+}
+
+.navMobile__button {
+	@apply btn hover:btn-ghost ml-5;
+}
+
+.navMobile__button svg {
+	@apply w-7 h-7;
+}
+
+.navMobile__menu {
+	top: 65px;
+	width: 150px;
+
+	@apply absolute right-0 p-2 bg-base-300 z-50 rounded-md shadow-lg;
+}
+
+.navMobile__menu li {
+	@apply p-1;
+}
+
+.navMobile__menu li a {
+	@apply w-full btn;
 }
