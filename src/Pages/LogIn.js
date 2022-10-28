@@ -1,15 +1,17 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { FaFacebook, FaGithub, FaGoogle } from "react-icons/fa";
+import { FaGithub, FaGoogle } from "react-icons/fa";
 import { useContext } from "react";
 import { AuthContext } from "../Contexts/UserContext";
 import { GoogleAuthProvider, GithubAuthProvider } from "firebase/auth";
+import { useState } from "react";
 
 const LogIn = () => {
     const { signIn, googleSignin, githubSignin } = useContext(AuthContext);
     const googleProvider = new GoogleAuthProvider();
     const githubProvider = new GithubAuthProvider();
     const navigate = useNavigate();
+    const [error, setError] = useState(null);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -24,9 +26,11 @@ const LogIn = () => {
 
                 console.log(user);
                 navigate("/courses");
+                setError(" ");
             })
             .catch((error) => {
                 console.error(error);
+                setError(error.message);
             });
     };
 
@@ -81,6 +85,7 @@ const LogIn = () => {
                                 <label className="label">
                                     <span className="label-text">Password</span>
                                 </label>
+
                                 <input
                                     type="password"
                                     placeholder="password"
@@ -89,6 +94,13 @@ const LogIn = () => {
                                     required
                                 />
                             </div>
+                            <span
+                                className="label-text "
+                                style={{ color: "red" }}
+                            >
+                                {" "}
+                                <small>{error}</small>
+                            </span>
                             <div className="form-control mt-6">
                                 <button
                                     type="submit"

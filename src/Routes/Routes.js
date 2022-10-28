@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../Layout/Main";
 import Blogs from "../Pages/Blogs";
+import CheckOut from "../Pages/Courses/CheckOut";
 import Courses from "../Pages/Courses/Courses";
 import SingleCourse from "../Pages/Courses/SingleCourse";
 import Home from "../Pages/Home";
@@ -23,11 +24,6 @@ export const router = createBrowserRouter([
             {
                 path: "/courses/:courseId",
                 element: <SingleCourse />,
-                loader: async ({ params }) => {
-                    return fetch(
-                        `https://openapi.programming-hero.com/api/quiz/${params.courseId}`
-                    );
-                },
             },
             {
                 path: "/blogs",
@@ -40,6 +36,10 @@ export const router = createBrowserRouter([
             {
                 path: "/register",
                 element: <Register></Register>,
+            },
+            {
+                path: "/checkout/:id",
+                element: <CheckOut></CheckOut>,
             },
         ],
     },

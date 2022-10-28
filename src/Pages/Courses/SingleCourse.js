@@ -1,15 +1,35 @@
+import { useState } from "react";
+import { useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
+
 const SingleCourse = () => {
+    const [course, setCourse] = useState({});
+    const params = useParams();
+    console.log(params);
+    useEffect(() => {
+        fetch(`http://localhost:5000/course/${params.courseId}`)
+            .then((res) => res.json())
+            .then((data) => setCourse(data));
+    }, [params.courseId]);
     return (
         <section className="w-3/5 mx-auto my-24 ">
             <div className="card lg:card-side bg-base-100 shadow-2xl ">
                 <figure>
-                    <img src="https://placeimg.com/400/400/arch" alt="Album" />
+                    <img src={course.img} alt="Album" />
                 </figure>
                 <div className="card-body ">
-                    <h2 className="card-title">New album is released!</h2>
-                    <p>Click the button to listen on Spotiwhy app.</p>
+                    <h2 className="card-title text-primary">{course.title}</h2>
+                    <p>{course.body}</p>
+                    <p className="text-primary">
+                        <small>Price{course.price}$</small>
+                    </p>
                     <div className="card-actions justify-end">
-                        <button className="btn btn-primary">Listen</button>
+                        <Link
+                            to={`/checkout/${course.id}`}
+                            className="btn btn-primary"
+                        >
+                            Checkout
+                        </Link>
                     </div>
                 </div>
             </div>
