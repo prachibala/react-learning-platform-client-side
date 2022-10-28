@@ -28,7 +28,7 @@ const SingleCourse = () => {
                             to={`/checkout/${course.id}`}
                             className="btn btn-primary"
                         >
-                            Checkout
+                            Get premium access
                         </Link>
                     </div>
                 </div>
