@@ -1,12 +1,12 @@
 import React from "react";
-
+import { useState } from "react";
 import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Contexts/UserContext";
 
 const Register = () => {
     const { createUser, updateUser } = useContext(AuthContext);
-
+    const [error, setError] = useState(null);
     const navigate = useNavigate();
     // form Function
     const handleSubmit = (e) => {
@@ -22,6 +22,7 @@ const Register = () => {
             .then((result) => {
                 const user = result.user;
                 console.log("registered user", user);
+
                 return updateUser(name, photoURL);
             })
             .then((res) => {
@@ -30,6 +31,7 @@ const Register = () => {
             })
             .catch((error) => {
                 console.error(error);
+                setError(error.message);
             });
     };
 
@@ -85,7 +87,13 @@ const Register = () => {
                                     required
                                 />
                             </div>
-
+                            <span
+                                className="label-text "
+                                style={{ color: "red" }}
+                            >
+                                {" "}
+                                <small>{error}</small>
+                            </span>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Password</span>

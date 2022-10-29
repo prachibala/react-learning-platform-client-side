@@ -1,26 +1,32 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const NotFound = () => {
     return (
         <div>
-            <div className="alert alert-error shadow-lg mt-20 w-5/12 mx-auto">
-                <div>
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="stroke-current flex-shrink-0 h-6 w-6"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                    >
-                        <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
-                        />
-                    </svg>
-                    <span>Error! page not found.</span>
+            <section className="flex items-center h-full p-16 base-200 dark:text-gray-100">
+                <div className="container flex flex-col items-center justify-center px-5 mx-auto my-8">
+                    <div className="max-w-md text-center">
+                        <h2 className="mb-8 font-extrabold text-9xl dark:text-gray-600">
+                            <span className="sr-only">Error</span>404
+                        </h2>
+                        <p className="text-2xl font-semibold md:text-3xl">
+                            Sorry, we couldn't find this page.
+                        </p>
+                        <p className="mt-4 mb-8 dark:text-gray-400">
+                            But dont worry, you can find plenty of other things
+                            on our homepage.
+                        </p>
+                        <Link
+                            rel="noopener noreferrer"
+                            to="/"
+                            className="px-8 py-3 font-semibold rounded dark:bg-violet-400 dark:text-gray-900"
+                        >
+                            Back to homepage
+                        </Link>
+                    </div>
                 </div>
-            </div>
+            </section>
         </div>
     );
 };

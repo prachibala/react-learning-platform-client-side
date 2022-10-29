@@ -11,7 +11,10 @@ const SingleCourse = () => {
     useEffect(() => {
         fetch(`${process.env.REACT_APP_serverurl}/course/${params.courseId}`)
             .then((res) => res.json())
-            .then((data) => setCourse(data));
+            .then((data) => setCourse(data))
+            .catch((err) => {
+                console.log(err);
+            });
     }, [params.courseId]);
     return (
         <section className="w-3/5 mx-auto my-24 ">

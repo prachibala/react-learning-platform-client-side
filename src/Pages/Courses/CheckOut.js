@@ -10,7 +10,10 @@ const CheckOut = () => {
     useEffect(() => {
         fetch(`${process.env.REACT_APP_serverurl}/course/${params.id}`)
             .then((res) => res.json())
-            .then((data) => setCourse(data));
+            .then((data) => setCourse(data))
+            .catch((err) => {
+                console.log(err);
+            });
     }, [params.id]);
 
     const handleBtn = (e) => {
